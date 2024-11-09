@@ -1,0 +1,37 @@
+{
+    "env": {
+        "browser": false,
+        "es2021": true,
+        "node": true,
+        "mocha": true
+    },
+    "extends": [
+        "eslint:recommended",
+        "plugin:node/recommended",
+        "plugin:prettier/recommended"
+    ],
+    "parserOptions": {
+        "ecmaVersion": 12,
+        "sourceType": "module",
+        "ecmaFeatures": {
+            "experimentalDecorators": true
+        }
+    },
+    "rules": {
+        "no-console": "off",
+        "no-empty": ["error", { "allowEmptyCatch": true }],
+        "prefer-const": "error",
+        "no-var": "error",
+        "node/no-extraneous-require": "error",
+        "node/no-missing-require": "error",
+        "node/no-unsupported-features/es-syntax": "error",
+        "no-unused-vars": ["warn", { "argsIgnorePattern": "^_" }],
+        "semi": ["error", "always"],
+        "quotes": ["error", "single"],
+        "indent": ["error", 4],
+        "max-len": ["error", { "code": 80 }],
+        "prettier/prettier": "error",
+        "Unexpected token assert": "off"
+    },
+    "plugins": ["prettier"]
+}
