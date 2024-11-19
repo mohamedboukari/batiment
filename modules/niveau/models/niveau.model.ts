@@ -12,7 +12,7 @@ const NiveauSchema = new Schema(
             ref: 'Batiment',
             required: true,
         },
-        etat_construction: Boolean,
+        etat_construction: { type: Boolean, default: false },
     },
     {
         timestamps: true,

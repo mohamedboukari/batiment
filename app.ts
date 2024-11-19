@@ -1,7 +1,7 @@
 import express from 'express';
 import mongoose from 'mongoose';
 import bodyParser from 'body-parser';
-import apiRoutes from './routes/apiRoutes.js'; // Import the grouped routes
+import apiRoutes from './routes/apiRoutes.js';
 import http from 'http';
 import path from 'path';
 import { fileURLToPath } from 'url';
@@ -11,8 +11,9 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 const app = express();
-const PORT = 3000;
-app.use(express.json());
+
+const PORT = 3005;
+
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'twig');
 app.use(express.static(path.join(__dirname, 'public')));

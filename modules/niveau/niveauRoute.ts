@@ -5,7 +5,7 @@ import {
     createniveauHandler,
     updateniveauHandler,
     deleteniveauHandler,
-} from './controllers/niveau.controller.js';
+} from './controllers/niveau.controller.ts';
 
 const niveauRoutes = express.Router();
 
