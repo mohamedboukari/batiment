@@ -1,37 +1,62 @@
 {
     "env": {
-        "browser": false,
         "es2021": true,
         "node": true,
         "mocha": true
     },
+    "parser": "@typescript-eslint/parser",
+    "parserOptions": {
+        "ecmaVersion": "latest",
+        "sourceType": "module",
+        "project": "./tsconfig.json"
+    },
+    "plugins": ["@typescript-eslint", "prettier"],
     "extends": [
         "eslint:recommended",
-        "plugin:node/recommended",
+        "plugin:@typescript-eslint/recommended",
         "plugin:prettier/recommended"
     ],
-    "parserOptions": {
-        "ecmaVersion": 12,
-        "sourceType": "module",
-        "ecmaFeatures": {
-            "experimentalDecorators": true
-        }
-    },
     "rules": {
+        // TypeScript specific rules
+        "@typescript-eslint/explicit-function-return-type": "error",
+        "@typescript-eslint/no-explicit-any": "warn",
+
+        "@typescript-eslint/no-unused-vars": [
+            "warn",
+            {
+                "argsIgnorePattern": "^_",
+                "varsIgnorePattern": "^_"
+            }
+        ],
+        // General rules
         "no-console": "off",
-        "no-empty": ["error", { "allowEmptyCatch": true }],
         "prefer-const": "error",
         "no-var": "error",
-        "node/no-extraneous-require": "error",
-        "node/no-missing-require": "error",
-        "node/no-unsupported-features/es-syntax": "error",
-        "no-unused-vars": ["warn", { "argsIgnorePattern": "^_" }],
+
+        // Code style
         "semi": ["error", "always"],
         "quotes": ["error", "single"],
         "indent": ["error", 4],
-        "max-len": ["error", { "code": 80 }],
-        "prettier/prettier": "error",
-        "Unexpected token assert": "off"
-    },
-    "plugins": ["prettier"]
+        "max-len": [
+            "error",
+            {
+                "code": 80,
+                "ignoreUrls": true,
+                "ignoreStrings": true,
+                "ignoreTemplateLiterals": true,
+                "ignoreRegExpLiterals": true
+            }
+        ],
+
+        // Prettier integration
+        "prettier/prettier": [
+            "error",
+            {
+                "singleQuote": true,
+                "tabWidth": 4,
+                "printWidth": 80,
+                "trailingComma": "es5"
+            }
+        ]
+    }
 }

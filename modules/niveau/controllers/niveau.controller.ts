@@ -1,12 +1,16 @@
+import { Request, Response } from 'express';
 import {
     getAllniveaus,
     getniveauById,
     createniveau,
     updateniveau,
     deleteniveau,
-} from '../services/niveau.service.js';
+} from '../services/niveau.service.ts';
 
-export const getniveaus = async (req, res) => {
+export const getniveaus = async (
+    req: Request,
+    res: Response
+): Promise<void> => {
     try {
         const niveaus = await getAllniveaus();
         res.status(200).json(niveaus);
@@ -15,11 +19,11 @@ export const getniveaus = async (req, res) => {
     }
 };
 
-export const getniveau = async (req, res) => {
+export const getniveau = async (req: Request, res: Response): Promise<void> => {
     try {
         const niveau = await getniveauById(req.params.id);
         if (!niveau) {
-            return res.status(404).json({ message: 'niveau not found' });
+            res.status(404).json({ message: 'niveau not found' });
         }
         res.status(200).json(niveau);
     } catch (error) {
@@ -27,7 +31,10 @@ export const getniveau = async (req, res) => {
     }
 };
 
-export const createniveauHandler = async (req, res) => {
+export const createniveauHandler = async (
+    req: Request,
+    res: Response
+): Promise<void> => {
     const niveauDTO = req.body;
 
     try {
@@ -40,13 +47,16 @@ export const createniveauHandler = async (req, res) => {
     }
 };
 
-export const updateniveauHandler = async (req, res) => {
+export const updateniveauHandler = async (
+    req: Request,
+    res: Response
+): Promise<void> => {
     const niveauDTO = req.body;
 
     try {
         const niveau = await updateniveau(req.params.id, niveauDTO);
         if (!niveau) {
-            return res.status(404).json({ message: 'niveau not found' });
+            res.status(404).json({ message: 'niveau not found' });
         }
         res.status(200).json(niveau);
     } catch (error) {
@@ -54,11 +64,14 @@ export const updateniveauHandler = async (req, res) => {
     }
 };
 
-export const deleteniveauHandler = async (req, res) => {
+export const deleteniveauHandler = async (
+    req: Request,
+    res: Response
+): Promise<void> => {
     try {
         const niveau = await deleteniveau(req.params.id);
         if (!niveau) {
-            return res.status(404).json({ message: 'niveau not found' });
+            res.status(404).json({ message: 'niveau not found' });
         }
         res.status(200).json({ message: 'niveau deleted successfully' });
     } catch (error) {
